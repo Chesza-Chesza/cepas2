@@ -61,9 +61,10 @@ class WineStrainsController < ApplicationController
     def set_wine_strain
       @wine_strain = WineStrain.find(params[:id])
     end
+    
 
     # Only allow a list of trusted parameters through.
     def wine_strain_params
-      params.require(:wine_strain).permit(:percentage, :wine_id, :strain_id)
+      params.require(:wine_strain).permit(:wine_id, :strain_id, :percentage)
     end
 end

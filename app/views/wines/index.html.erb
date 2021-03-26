@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Strains</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @wines.each do |wine| %>
       <tr>
         <td><%= wine.name %></td>
+        <td><%= wine.wine_strains.map {|wine| "#{wine.strain.name}: #{wine.percentage}%"}.join(', ') %></td>
         <td><%= link_to 'Show', wine %></td>
         <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
         <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,4 +26,6 @@
 
 <br>
 
-<%= link_to 'New Wine', new_wine_path %>
+  <% if current_user&.admin? %>
+    <%= link_to 'New Wine', new_wine_path %>
+  <% end %>

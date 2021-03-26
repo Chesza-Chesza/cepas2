@@ -15,6 +15,13 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
+  
+  <%= form.fields_for :wine_strains do |strain| %>
+    <div class="field">
+      <%= strain.select :strain_id, @strains, prompt: 'Select a strain' %>
+    <%= strain.text_field :percentage, placeholder: 'Add a percentage' %>  
+    </div>
+  <% end %>  
 
   <div class="actions">
     <%= form.submit %>
